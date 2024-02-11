@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Save the state to storage
       chrome.storage.sync.set({ isToggleEnabled: isToggleEnabled });
       // Send a message to the background script
-      chrome.runtime.sendMessage({ action: 'toggle', isEnabled: true });
+      chrome.runtime.sendMessage({ action: 'toggle', isEnabled: isToggleEnabled });
 
     });
   });

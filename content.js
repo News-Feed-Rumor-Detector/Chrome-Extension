@@ -1,23 +1,28 @@
 let isEnabled = false;
 
-console.log('Content script loaded');
-
+console.log('Content script is loaded');
+console.log(document.URL);
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.action == 'toggle') {
+    console.log('Toggle message received');
     isEnabled = request.isEnabled;
   }
 });
 
-document.addEventListener('select', function() {
-  console.log('Text selected');
-  checkRumour();
+document.addEventListener('click', function() {
+  console.log('Clicked on the page');
+    checkRumour();
+
 });
 
 function checkRumour() {
-  if (isEnabled) {
+  var selectedText = window.getSelection().toString();
+  console.log("may I ask for: " + selectedText);
+  if (isEnabled && selectedText.length > 0) {
     // TODO: Integrate with the NFRD Server
     const isRumour = /* Make your API call and get the boolean response */ true;
-    showPopup(window.getSelection().toString(), isRumour);
+    console.log(selectedText);
+    showPopup(selectedText, isRumour);
   }
 }
 
