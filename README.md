@@ -17,9 +17,8 @@ This Chrome extension consists of three main components: Popup Window, Service W
   + It communicates with the Service Worker to receive instructions from the Popup Window or send data back to the Popup Window.
 ## Communication Flow
 + Popup Window sends a message to the Service Worker.
-+ Service Worker receives the message and may process it or relay it to the Content Script.
++ Service Worker receives the message and relays it to the Content Script.
 + Content Script interacts with the active tab's content based on the message received.
-+ Content Script may send a response or update through the Service Worker back to the Popup Window.
 ## Setup Instructions
 + Clone this repository to your local machine.
 + Open Google Chrome and navigate to chrome://extensions/.
