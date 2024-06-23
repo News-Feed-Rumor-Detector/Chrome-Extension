@@ -26,7 +26,7 @@ function checkRumour() {
     .then(response => response.json())
     .then(data => {
     	console.log(data);
-			parsedData = parseData(data);      
+			parsedData = parseData(data);
 			const isRumour = parsedData.isRumour;
       const confidenceScore = parsedData.confidenceScore;
       showPopup(isRumour, confidenceScore);
@@ -75,6 +75,6 @@ function showPopup(isRumour, confidenceScore) {
   if (isRumour){
     const alertMessage = `Based on our analysis, the selected text is most likely a rumour with a confidence score of ${formattedConfidenceScore}. Please verify the information from reliable sources before sharing or making decisions.`;
   }
-  
+
   alert(alertMessage);
 }
