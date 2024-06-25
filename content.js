@@ -38,7 +38,7 @@ function checkRumour() {
 }
 async function query(data) {
 	const response = await fetch(
-		"https://api-inference.huggingface.co/models/NFRD/nfrd-model",
+		"https://api-inference.huggingface.co/models/NFRD/nfrd-model-base",
 		{
 			headers: { Authorization: "Bearer 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" },
 			method: "POST",
@@ -51,8 +51,20 @@ async function query(data) {
 
 function parseData(data){
 	// Extract the relevant information
-	const label1 = data[0][0];
-	const label0 = data[0][1];
+	const labelx = data[0][0];
+	const labely = data[0][1];
+	var label1 = 0;
+	var label0 = 0;
+	
+	if (labelx.label == "LABEL_1"){
+		label1 = labelx;
+		label0 = labely;
+	}else{
+		label1 = labely;		
+		label0 = labelx;
+	}
+	console.log(label1);
+	console.log(label0);
 
 	// Determine if the prediction is a rumour or not
 	const isRumour = label1.score > label0.score;
